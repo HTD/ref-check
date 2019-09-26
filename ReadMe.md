@@ -15,6 +15,8 @@ indroducing insane dependency hell and unexpected `FileNotFoundException`s.
 
 Check which references really conflict with each other with this tool.
 
+Inspired with https://gist.github.com/brianlow/1553265 .
+
 ## Prerequisites
 
 - .NET Core 3.0 ([Download SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0))
@@ -36,3 +38,5 @@ Made for .NET Core 3.0 because it's cool. And... Cross-platform ;)
 It won't work for any possible solution configuration.
 The assembly selection algorithm is braindead simple in this version.
 Default names only (this time).
+
+BTW, I wondered how to make an executable tool using .NET Core. That's how.
