@@ -15,7 +15,7 @@ namespace ReferencesCheck {
         /// </summary>
         /// <param name="args">Command line arguments.</param>
         /// <returns>Exit code.</returns>
-        static int Main(string[] args) { // ref-check x64
+        static int Main(string[] args) {
             if (!args.Any()) return Help(0);
             if (args.Length < 2 || args.Length > 3) return Help();
             var baseDirectory = args.Length == 3 ? args[2] : Directory.GetCurrentDirectory();
