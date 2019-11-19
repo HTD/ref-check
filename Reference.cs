@@ -65,6 +65,7 @@ namespace ReferencesCheck {
         /// <returns></returns>
         public override string ToString() => $"[ {Referenced} ] referenced by [ {In.Name} ]";
 
+
         /// <summary>
         /// Gets all references in base directory.
         /// </summary>
@@ -72,11 +73,12 @@ namespace ReferencesCheck {
         /// <param name="currentConfig">Current configuration directory name.</param>
         /// <param name="currentPlatform">Current platform directory name.</param>
         /// <returns>All target references.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Assembly load exception reason is perfectly irrelevant here")]
         private static IEnumerable<Reference> GetTargets(string baseDirectory, string currentConfig, string currentPlatform) {
             var directories =
                 Directory.GetDirectories(baseDirectory, currentConfig, SearchOption.AllDirectories)
                 .Where(i => !((currentPlatform == "x64" && i.Contains("x86") || (currentPlatform == "x86" && i.Contains("x64")))));
-            if (!directories.Any()) return new Reference[0];
+            if (!directories.Any()) return Array.Empty<Reference>();
             var files =
                 directories.Select(i => Directory.GetFiles(i, "*.dll").Concat(Directory.GetFiles(i, "*.exe"))).Aggregate((a, b) => a.Concat(b));
             var assemblies =
